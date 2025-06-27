@@ -297,18 +297,34 @@
             workspaces: [
                 {id: 1, name: 'A1', description: 'Угловое место у окна', floor: 1, has_monitor: true, has_docking: true},
                 {id: 2, name: 'A2', description: 'Главный кабинет', floor: 1, has_monitor: true, has_docking: true},
-                {id: 3, name: 'B1', description: 'Открытое пространство', floor: 2, has_monitor: true, has_docking: false},
-                {id: 4, name: 'B2', description: 'Переговорная комната', floor: 2, has_monitor: true, has_docking: true}
+                {id: 3, name: 'A3', description: 'Место у стены', floor: 1, has_monitor: false, has_docking: true},
+                {id: 4, name: 'A4', description: 'Место в центре', floor: 1, has_monitor: true, has_docking: false},
+                {id: 5, name: 'B1', description: 'Открытое пространство', floor: 2, has_monitor: true, has_docking: false},
+                {id: 6, name: 'B2', description: 'Переговорная комната', floor: 2, has_monitor: true, has_docking: true},
+                {id: 7, name: 'B3', description: 'Тихая зона', floor: 2, has_monitor: false, has_docking: false},
+                {id: 8, name: 'B4', description: 'Место у окна', floor: 2, has_monitor: true, has_docking: true},
+                {id: 9, name: 'C1', description: 'Кабинет руководителя', floor: 3, has_monitor: true, has_docking: true},
+                {id: 10, name: 'C2', description: 'Зона для совещаний', floor: 3, has_monitor: true, has_docking: true},
+                {id: 11, name: 'C3', description: 'Место с двумя мониторами', floor: 3, has_monitor: true, has_docking: true},
+                {id: 12, name: 'C4', description: 'Угловое место с видом', floor: 3, has_monitor: true, has_docking: true},
+                {id: 13, name: 'D1', description: 'Коворкинг зона', floor: 4, has_monitor: false, has_docking: false},
+                {id: 14, name: 'D2', description: 'Место для гостей', floor: 4, has_monitor: true, has_docking: false},
+                {id: 15, name: 'D3', description: 'Зона отдыха', floor: 4, has_monitor: false, has_docking: false},
+                {id: 16, name: 'D4', description: 'Место с принтером', floor: 4, has_monitor: true, has_docking: true}
             ],
             users: [
                 {id: 1, name: 'Admin', email: 'admin@office.com', password: 'admin123', role: 'admin', department: 'Management'},
                 {id: 2, name: 'Александра Адександровна', email: 'alex@office.com', password: 'user123', role: 'user', department: 'Development'},
-                {id: 3, name: 'Петр Николаевич', email: 'petr@office.com', password: 'user123', role: 'user', department: 'Marketing'}
+                {id: 3, name: 'Петр Николаевич', email: 'petr@office.com', password: 'user123', role: 'user', department: 'Marketing'},
+                {id: 4, name: 'Иван Сергеевич', email: 'ivan@office.com', password: 'user123', role: 'user', department: 'Sales'},
+                {id: 5, name: 'Мария Ивановна', email: 'maria@office.com', password: 'user123', role: 'user', department: 'HR'}
             ],
             bookings: [
                 {id: 1, user_id: 2, workspace_id: 1, date: new Date().toISOString().split('T')[0], start_time: '09:00', end_time: '12:00', user_name: 'Александра Адександровна', workspace_name: 'A1'},
                 {id: 2, user_id: 3, workspace_id: 2, date: new Date().toISOString().split('T')[0], start_time: '13:00', end_time: '18:00', user_name: 'Петр Николаевич', workspace_name: 'A2'},
-                {id: 3, user_id: 2, workspace_id: 3, date: new Date(Date.now() + 86400000).toISOString().split('T')[0], start_time: '10:00', end_time: '15:00', user_name: 'Александра Адександровна', workspace_name: 'B1'}
+                {id: 3, user_id: 2, workspace_id: 5, date: new Date(Date.now() + 86400000).toISOString().split('T')[0], start_time: '10:00', end_time: '15:00', user_name: 'Александра Адександровна', workspace_name: 'B1'},
+                {id: 4, user_id: 4, workspace_id: 9, date: new Date(Date.now() + 86400000).toISOString().split('T')[0], start_time: '09:00', end_time: '18:00', user_name: 'Иван Сергеевич', workspace_name: 'C1'},
+                {id: 5, user_id: 5, workspace_id: 12, date: new Date(Date.now() + 2 * 86400000).toISOString().split('T')[0], start_time: '12:00', end_time: '15:00', user_name: 'Мария Ивановна', workspace_name: 'C4'}
             ]
         };
 
@@ -371,7 +387,7 @@
             appState.workspaces.forEach(ws => {
                 const option = document.createElement('option');
                 option.value = ws.id;
-                option.textContent = `${ws.name} (Этаж ${ws.floor})`;
+                option.textContent = `${ws.name} (Этаж ${ws.floor}) - ${ws.description}`;
                 workspaceSelect.appendChild(option);
             });
         }
